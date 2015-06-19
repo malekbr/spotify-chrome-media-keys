@@ -1,0 +1,41 @@
+{
+	"manifest_version": 2,
+	"name": "Spotify Global Media Keys",
+	"description": "Captures media keys globally and uses them to control Spotify",
+	"version": "1.0",
+	"browser_action": {
+		"default_popup": "popup.html"
+	},
+	"permissions": ["notifications"],
+	"background": {
+		"scripts": ["events_page.js"]
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://play.spotify.com/*"],
+			"js": ["injected_script.js"],
+			"run_at": "document_idle"
+		}
+	],
+	// commands are names of the buttons
+	"commands": {
+		"play-pause": {
+			"suggested_key": {
+				"default": "MediaPlayPause"
+			},
+			"description": "Play/Pause Spotify"
+		},
+		"next": {
+			"suggested_key": {
+				"default": "MediaNextTrack"
+			},
+			"description": "Next Spotify Track"
+		},
+		"previous": {
+			"suggested_key": {
+				"default": "MediaPrevTrack"
+			},
+			"description": "Previous Spotify Track"
+		}
+	}
+}
